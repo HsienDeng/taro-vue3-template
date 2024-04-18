@@ -1,0 +1,23 @@
+$primary-color: #1a91ba;
+//$primary-color-end: #345aec;
+
+$bg-color: #ffffff;
+$bg-color-primary: #1a91ba;
+$bg-color-grey: #f4f5f7;
+$bg-color-grey-deep: #ebecee;
+
+//基本色
+$text-color: #333;
+//反色
+$text-color-inverse: #fff;
+//辅助灰色，如加载更多的提示信息
+$text-color-grey: #999;
+$text-color-placeholder: #808080;
+$text-color-disable: #c0c0c0;
+
+// reset nut-ui fontsize
+$font-size-0: var(--nut-font-size-0, 12px) !default;
+$font-size-1: var(--nut-font-size-1, 14px) !default;
+$font-size-2: var(--nut-font-size-2, 16px) !default;
+$font-size-3: var(--nut-font-size-3, 18px) !default;
+$font-size-4: var(--nut-font-size-4, 20px) !default;

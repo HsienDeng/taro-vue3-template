@@ -1,0 +1,23 @@
+{
+  "id": "4501806",
+  "name": "mfs-wechat",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "15838513",
+      "name": "mobile-phone",
+      "font_class": "mobile-phone",
+      "unicode": "e6bd",
+      "unicode_decimal": 59069
+    },
+    {
+      "icon_id": "15838528",
+      "name": "security",
+      "font_class": "security",
+      "unicode": "e6cc",
+      "unicode_decimal": 59084
+    }
+  ]
+}

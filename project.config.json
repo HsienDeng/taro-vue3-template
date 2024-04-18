@@ -1,0 +1,15 @@
+{
+  "miniprogramRoot": "./dist",
+  "projectname": "mfs-wechat-app",
+  "description": "XX小程序",
+  "appid": "wx8e40ec62f98ecbe9",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "enhance": false,
+    "compileHotReLoad": false,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram"
+}
