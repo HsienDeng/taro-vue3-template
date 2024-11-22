@@ -10,24 +10,9 @@
     "framework": "Vue3"
   },
   "scripts": {
-    "build:weapp": "taro build --type weapp",
-    "build:swan": "taro build --type swan",
-    "build:alipay": "taro build --type alipay",
-    "build:tt": "taro build --type tt",
-    "build:h5": "taro build --type h5",
-    "build:rn": "taro build --type rn",
-    "build:qq": "taro build --type qq",
-    "build:jd": "taro build --type jd",
-    "build:quickapp": "taro build --type quickapp",
-    "dev:weapp": "npm run build:weapp -env production -- --watch ",
-    "dev:swan": "npm run build:swan -- --watch",
-    "dev:alipay": "npm run build:alipay -- --watch",
-    "dev:tt": "npm run build:tt -- --watch",
-    "dev:h5": "npm run build:h5 -- --watch",
-    "dev:rn": "npm run build:rn -- --watch",
-    "dev:qq": "npm run build:qq -- --watch",
-    "dev:jd": "npm run build:jd -- --watch",
-    "dev:quickapp": "npm run build:quickapp -- --watch"
+    "dev": "npm run dev:weapp",
+    "dev:weapp": "npm run build:weapp -env development -- --watch ",
+    "build:weapp": "taro build --type weapp"
   },
   "browserslist": [
     "last 3 versions",
@@ -55,7 +40,6 @@
     "@tarojs/shared": "3.6.25",
     "@tarojs/taro": "3.6.25",
     "@vueuse/core": "^10.9.0",
-    "axios": "^1.6.8",
     "pinia": "^2.1.7",
     "vue": "^3.2.40"
   },

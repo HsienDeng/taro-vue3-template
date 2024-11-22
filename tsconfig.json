@@ -8,7 +8,6 @@
     "allowSyntheticDefaultImports": true,
     "strictFunctionTypes": false,
     "jsx": "preserve",
-    "baseUrl": ".",
     "allowJs": true,
     "sourceMap": true,
     "esModuleInterop": true,
@@ -29,6 +28,7 @@
     ],
     "noImplicitAny": false,
     "skipLibCheck": true,
+    "baseUrl": "./",
     "paths": {
       "@/*": [
         "src/*"

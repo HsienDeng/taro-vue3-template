@@ -2,9 +2,19 @@
   <div v-if="bolShow" class="password-action__login">
     <nut-form ref="formRef" :model-value="formData" :rules="formRules">
       <nut-form-item prop="username">
-        <nut-input v-model="formData.username" placeholder="请输入手机号码" :max-length="11" type="number">
+        <nut-input
+          v-model="formData.username"
+          placeholder="请输入手机号码"
+          :max-length="11"
+          type="number"
+        >
           <template #left>
-            <IconFont font-class-name="iconfont" size="20px" class-prefix="icon" name="mobile-phone" />
+            <IconFont
+              font-class-name="iconfont"
+              size="20px"
+              class-prefix="icon"
+              name="mobile-phone"
+            />
           </template>
         </nut-input>
       </nut-form-item>
@@ -22,11 +32,15 @@
         </div>
       </nut-form-item>
     </nut-form>
-    <NutButton type="primary" block size="large" :loading="pageLoading" @click="onSubmitClick">登录</NutButton>
+    <NutButton type="primary" block size="large" :loading="pageLoading" @click="onSubmitClick">
+      登录
+    </NutButton>
   </div>
   <div class="footer">
-    <view class="tip"> 首次登录即默认注册 </view>
-    <view class="to-login" @click="toggleLogin(bolShow ? LoginAction.WECHAT : LoginAction.PASSWORD)">
+    <view
+      class="to-login"
+      @click="toggleLogin(bolShow ? LoginAction.WECHAT : LoginAction.PASSWORD)"
+    >
       {{ bolShow ? '快捷登录' : '密码登录' }}
     </view>
   </div>
@@ -95,7 +109,7 @@
    */
   function submitLogin() {
     pageLoading.value = true;
-    userStore.pwdLoginAciton(formData.value).catch((_) => {
+    userStore.pwdLoginAction(formData.value).catch((_) => {
       pageLoading.value = false;
     });
   }

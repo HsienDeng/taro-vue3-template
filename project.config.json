@@ -1,8 +1,8 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "mfs-wechat-app",
-  "description": "XX小程序",
-  "appid": "wx8e40ec62f98ecbe9",
+  "projectname": "临床试验研究中心",
+  "description": "临床试验研究中心",
+  "appid": "wx3de3455908283759",
   "setting": {
     "urlCheck": true,
     "es6": false,

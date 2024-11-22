@@ -2,9 +2,19 @@
   <NutSpace v-if="bolShow" direction="vertical" fill gutter="40rpx" className="action">
     <nut-form ref="formRef" :model-value="formData" :rules="formRules">
       <nut-form-item prop="username">
-        <nut-input v-model="formData.username" placeholder="请输入手机号码" :max-length="11" type="number">
+        <nut-input
+          v-model="formData.username"
+          placeholder="请输入手机号码"
+          :max-length="11"
+          type="number"
+        >
           <template #left>
-            <IconFont font-class-name="iconfont" size="20px" class-prefix="icon" name="mobile-phone" />
+            <IconFont
+              font-class-name="iconfont"
+              size="20px"
+              class-prefix="icon"
+              name="mobile-phone"
+            />
           </template>
         </nut-input>
       </nut-form-item>
@@ -20,7 +30,9 @@
       </nut-form-item>
       <nut-form-item />
     </nut-form>
-    <NutButton type="primary" block size="large" @click="onSubmitClick">登录</NutButton>
+    <NutButton type="primary" shape="square" block size="large" @click="onSubmitClick">
+      登录
+    </NutButton>
   </NutSpace>
 </template>
 
@@ -44,7 +56,7 @@
   /**
    * use toggle login action
    */
-  const { action, toggleLogin } = useLoginAction();
+  const { action } = useLoginAction();
   const bolShow = computed(() => {
     return action.value === LoginAction.PHONE;
   });
