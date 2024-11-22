@@ -1,5 +1,5 @@
-import { computed, ref } from "vue";
-import { createGlobalState } from "@vueuse/core";
+import { computed, ref } from 'vue';
+import { createGlobalState } from '@vueuse/core';
 
 export enum LoginAction {
   WECHAT,
@@ -11,7 +11,7 @@ export enum LoginAction {
  * 切换登录方式 hook
  */
 export const useLoginAction = createGlobalState(() => {
-  const _action = ref(LoginAction.WECHAT);
+  const _action = ref(LoginAction.PHONE);
 
   const action = computed(() => {
     return _action.value;

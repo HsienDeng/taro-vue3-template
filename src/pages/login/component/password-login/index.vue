@@ -36,13 +36,23 @@
       登录
     </NutButton>
   </div>
-  <div class="footer">
+  <div v-if="bolShow" class="footer end">
     <view
       class="to-login"
       @click="toggleLogin(bolShow ? LoginAction.WECHAT : LoginAction.PASSWORD)"
     >
-      {{ bolShow ? '快捷登录' : '密码登录' }}
+      快捷登录
     </view>
+  </div>
+  <div v-else :class="['footer', action !== LoginAction.WECHAT ? 'space' : 'end']">
+    <view
+      v-if="action !== LoginAction.WECHAT"
+      class="to-login"
+      @click="toggleLogin(LoginAction.WECHAT)"
+    >
+      快捷登录
+    </view>
+    <view class="to-login" @click="toggleLogin(LoginAction.PASSWORD)"> 密码登录 </view>
   </div>
 </template>
 

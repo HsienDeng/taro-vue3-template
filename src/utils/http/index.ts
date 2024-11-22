@@ -13,7 +13,7 @@ const handleResponse = (res) => {
       title: errorMsg,
       icon: errorMsg.length > 5 ? 'none' : 'error',
     });
-    return res.data;
+    return Promise.reject(res.data);
   }
   return res.data;
 };
@@ -22,31 +22,27 @@ const handleResponse = (res) => {
 const interceptor = (chain) => {
   const requestParams = chain.requestParams;
   const token = Taro.getStorageSync('token');
-  requestParams.header = {
-    ...requestParams.header,
-    Authorization: 'Bearer ' + token,
-  };
+  if (token) {
+    requestParams.headers['Authorization'] = 'Bearer ' + token;
+  }
   return chain
     .proceed(requestParams)
     .then((res) => handleResponse(res))
-    .catch(() => {
-      Taro.showToast({
-        title: '网络异常',
-        icon: 'error',
-      });
+    .catch((err) => {
+      return Promise.reject(err);
     });
 };
 
 Taro.addInterceptor(interceptor);
 
-const request = async (method, url, params): Promise<any> => {
-  let contentType = params?.data ? 'application/json' : 'application/x-www-form-urlencoded';
-  if (params) contentType = params?.headers?.contentType || contentType;
+const request = async (method, url, config): Promise<any> => {
+  let contentType = config?.data ? 'application/json' : 'application/x-www-form-urlencoded';
+  if (config) contentType = config?.headers?.contentType || contentType;
   const option = {
     method,
     isShowLoading: false,
     url: apiConfig.baseUrl + url,
-    data: params && (params?.data || params?.params),
+    data: config && (config?.data || config?.params),
     header: {
       'content-type': contentType,
     },
@@ -55,10 +51,10 @@ const request = async (method, url, params): Promise<any> => {
 };
 
 export default {
-  get: (url: string, config: any) => {
+  get: (url: string, config?: any) => {
     return request('GET', url, config);
   },
-  post: (url: string, config: any) => {
+  post: (url: string, config?: any) => {
     return request('POST', url, config);
   },
 };

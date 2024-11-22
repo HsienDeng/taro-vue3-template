@@ -13,6 +13,7 @@ declare module 'vue' {
     NutCheckbox: typeof import('@nutui/nutui-taro')['Checkbox']
     NutForm: typeof import('@nutui/nutui-taro')['Form']
     NutFormItem: typeof import('@nutui/nutui-taro')['FormItem']
+    NutImage: typeof import('@nutui/nutui-taro')['Image']
     NutInput: typeof import('@nutui/nutui-taro')['Input']
     NutSpace: typeof import('@nutui/nutui-taro')['Space']
     Src: typeof import('./src/components/cell/src/index.vue')['default']

@@ -11,7 +11,7 @@
   },
   "scripts": {
     "dev": "npm run dev:weapp",
-    "dev:weapp": "npm run build:weapp -env development -- --watch ",
+    "dev:weapp": "taro build --type weapp --watch",
     "build:weapp": "taro build --type weapp"
   },
   "browserslist": [

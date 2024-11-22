@@ -39,9 +39,9 @@
   const handlePhoneNumber = (e) => {
     const { code, errMsg } = e.detail;
     if (errMsg !== 'getPhoneNumber:ok') {
-      Taro.showToast({
-        title: errMsg,
-        icon: 'none',
+      Taro.showModal({
+        title: '您已拒绝授权，请重新点击并授权！',
+        showCancel: false,
       });
       return [null];
     }

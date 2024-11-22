@@ -24,15 +24,19 @@
       background-color: $primary-color;
       text-align: center;
       color: #fff;
-      padding: 100rpx 0;
+      padding: 80rpx 0;
       margin-bottom: 80rpx;
 
       .title {
         color: #fff;
         margin-top: 10px;
-        font-weight: bold;
-        font-size: 40px;
+        font-size: 50rpx;
       }
+    }
+
+    .login-code-img {
+      height: 60rpx;
+      width: 180rpx;
     }
 
     &-container {
@@ -44,7 +48,6 @@
 
       .footer {
         display: flex;
-        justify-content: flex-end;
         align-items: center;
         margin-top: 40px;
         font-size: var(--nut-checkbox-label-font-size, 28rpx);
@@ -57,6 +60,12 @@
         .to-login {
           color: $primary-color;
         }
+      }
+      .footer.space {
+        justify-content: space-between;
+      }
+      .footer.end {
+        justify-content: flex-end;
       }
     }
 

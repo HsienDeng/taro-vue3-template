@@ -11,7 +11,7 @@ const app_id = '2';
 /**
  * 登录
  */
-export function login(params): Promise<LoginResult> {
+export function login(params: any): Promise<LoginResult> {
   params = {
     client_id,
     client_secret,
@@ -25,5 +25,17 @@ export function login(params): Promise<LoginResult> {
   }
   return http.get('/auth/oauth/token', {
     params,
+  });
+}
+
+/** 获取图形验证码 */
+export function getImageCode() {
+  return http.get('/code');
+}
+
+/** 获取短信验证码 */
+export function sendSmsCode(data) {
+  return http.post('/system/sms/sendSMS', {
+    data,
   });
 }
