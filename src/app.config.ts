@@ -1,5 +1,5 @@
 export default defineAppConfig({
-  pages: ['pages/login/index', 'pages/index/index', 'pages/profile/index'],
+  pages: ['pages/workbench/index', 'pages/login/index', 'pages/index/index', 'pages/profile/index'],
   tabBar: {
     color: '#333',
     selectedColor: '#1658ba',
@@ -7,7 +7,7 @@ export default defineAppConfig({
     borderStyle: 'black',
     list: [
       {
-        pagePath: 'pages/index/index',
+        pagePath: 'pages/workbench/index',
         text: '首页',
         iconPath: 'assets/images/tabbar/home.png',
         selectedIconPath: 'assets/images/tabbar/home-active.png',

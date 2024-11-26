@@ -11,7 +11,7 @@ export enum LoginAction {
  * 切换登录方式 hook
  */
 export const useLoginAction = createGlobalState(() => {
-  const _action = ref(LoginAction.PHONE);
+  const _action = ref(LoginAction.WECHAT);
 
   const action = computed(() => {
     return _action.value;

@@ -1,5 +1,5 @@
 import http from '@/utils/http';
-import { LoginResult } from '@/api/user/types';
+import { LoginResult, UserInfoVo } from '@/api/user/types';
 
 /** 登录固定传参 */
 const client_id = 'ctms';
@@ -38,4 +38,11 @@ export function sendSmsCode(data) {
   return http.post('/system/sms/sendSMS', {
     data,
   });
+}
+
+/**
+ * 获取当前登录用户信息
+ */
+export function selectUserInfo(): Promise<UserInfoVo> {
+  return http.get('/system/user/getInfo');
 }

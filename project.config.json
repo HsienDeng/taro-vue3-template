@@ -4,11 +4,12 @@
   "description": "临床试验研究中心",
   "appid": "wx3de3455908283759",
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": false,
     "enhance": false,
     "compileHotReLoad": false,
     "postcss": false,
+    "bigPackageSizeSupport": true,
     "minified": false
   },
   "compileType": "miniprogram"

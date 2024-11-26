@@ -2,40 +2,90 @@ import Taro from '@tarojs/taro';
 import apiConfig from '@/api.config';
 
 /**
+ * 处理错误
+ * @param code
+ * @param msg
+ */
+const handleResponseError = (code: number, msg: string) => {
+  switch (code) {
+    case 400:
+      Taro.showToast({
+        title: msg || '请求错误，请联系管理员解决',
+        icon: 'error',
+      });
+      break;
+    case 401:
+      Taro.showModal({
+        title: '提示',
+        content: '登录已过期，请重新登录！',
+      }).then(() => {
+        Taro.removeStorageSync('token');
+        Taro.reLaunch({
+          url: '/pages/login/login',
+        });
+      });
+      break;
+    case 404:
+      Taro.showToast({
+        title: msg || '资源不存在',
+        icon: 'error',
+      });
+      break;
+    default:
+      Taro.showToast({
+        title: msg || '请求错误，请联系管理员解决',
+        icon: 'error',
+      });
+  }
+};
+
+/**
  * 处理请求
  * @param res
  */
 const handleResponse = (res) => {
-  const { code, msg } = res.data;
+  const code = res.data.code || res.statusCode;
   if (code && code !== 200) {
-    const errorMsg = msg || '服务器异常';
-    Taro.showToast({
-      title: errorMsg,
-      icon: errorMsg.length > 5 ? 'none' : 'error',
-    });
-    return Promise.reject(res.data);
+    const errorMsg = res.data.msg || '网络错误，请稍候重试';
+    handleResponseError(code, errorMsg);
+    return [null, res.data];
   }
-  return res.data;
+  return [res.data, null];
 };
 
-// 网络请求拦截器
+/**
+ * 网络请求拦截器
+ * @param chain
+ */
 const interceptor = (chain) => {
-  const requestParams = chain.requestParams;
-  const token = Taro.getStorageSync('token');
-  if (token) {
-    requestParams.headers['Authorization'] = 'Bearer ' + token;
-  }
-  return chain
-    .proceed(requestParams)
-    .then((res) => handleResponse(res))
-    .catch((err) => {
-      return Promise.reject(err);
-    });
+  return new Promise((resolve, reject) => {
+    const requestParams = chain.requestParams;
+    const token = Taro.getStorageSync('token');
+    if (token) {
+      requestParams.header['Authorization'] = 'Bearer ' + token;
+    }
+    return chain
+      .proceed(requestParams)
+      .then((res: Promise<any>) => {
+        const [data, nil] = handleResponse(res);
+        if (nil) {
+          return reject(data);
+        }
+        resolve(res);
+      })
+      .catch((err) => reject(err));
+  });
 };
 
 Taro.addInterceptor(interceptor);
 
-const request = async (method, url, config): Promise<any> => {
+/**
+ * 请求
+ * @param method
+ * @param url
+ * @param config
+ */
+const request = (method, url, config): Promise<any> => {
   let contentType = config?.data ? 'application/json' : 'application/x-www-form-urlencoded';
   if (config) contentType = config?.headers?.contentType || contentType;
   const option = {
@@ -47,7 +97,7 @@ const request = async (method, url, config): Promise<any> => {
       'content-type': contentType,
     },
   };
-  return await Taro.request(option);
+  return Taro.request(option);
 };
 
 export default {

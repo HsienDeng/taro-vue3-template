@@ -13,22 +13,22 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { Dongdong } from '@nutui/icons-vue-taro'
+  import { ref } from 'vue';
+  import { Dongdong } from '@nutui/icons-vue-taro';
 
-const count = ref(0)
+  const count = ref(0);
 
-const handleClick = () => {
-  count.value++
-}
+  const handleClick = () => {
+    count.value++;
+  };
 </script>
 
 <style>
-.demo {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+  .demo {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 </style>

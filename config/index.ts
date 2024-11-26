@@ -21,7 +21,7 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: ['@tarojs/plugin-html'],
+  plugins: ['@tarojs/plugin-html', 'tarojs-router-next-plugin'],
   defineConstants: {},
   copy: {
     patterns: [],
@@ -30,7 +30,7 @@ const config = {
   framework: 'vue3',
   compiler: {
     type: 'webpack5',
-    prebundle: { enable: false },
+    prebundle: { enable: false, exclude: ['tarojs-router-next'] },
   },
   sass: {
     data: `@import "@/assets/css/custom_var.scss";@import "@nutui/nutui-taro/dist/styles/variables.scss";`,

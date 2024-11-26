@@ -9,7 +9,7 @@ const apiConfig = {
 if (envVersion === 'trial') {
   apiConfig.baseUrl = 'https://xy3-stage.ghcchina.cn/ctms-api';
 } else if (envVersion === 'release') {
-  apiConfig.baseUrl = 'https://apiConfig.ghcchina.cn/ctms-api';
+  apiConfig.baseUrl = 'https://xy3.ghcchina.cn/ctms-api';
 }
 
 export default apiConfig;
