@@ -15,7 +15,11 @@
 
     <view class="menu-list">
       <nut-cell-group>
-        <nut-cell title="项目审查" is-link @click="handleNavigate('/pages/project-review/index')" />
+        <nut-cell
+          title="项目审查"
+          is-link
+          @click="handleNavigate('/pages/project-review/approval-project/index')"
+        />
         <nut-cell
           title="委员审查"
           is-link
@@ -41,7 +45,7 @@
   // Navigation handler
   const handleNavigate = (url: string) => {
     console.log(url);
-    Router.toProfile();
+    Router.navigate({ url });
   };
 
   $store.setUserInfo();

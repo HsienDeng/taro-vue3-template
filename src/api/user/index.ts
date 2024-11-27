@@ -11,7 +11,7 @@ const app_id = '2';
 /**
  * 登录
  */
-export function login(params: any): Promise<LoginResult> {
+export function loginRequest(params: any): Promise<LoginResult> {
   params = {
     client_id,
     client_secret,

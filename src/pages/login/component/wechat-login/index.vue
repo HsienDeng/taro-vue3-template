@@ -58,22 +58,12 @@
       title: '正在登录中...',
       mask: true,
     });
-    login({
-      code,
-      grant_type: 'wechat',
-    })
-      .then((res) => {
-        Taro.hideLoading();
-        if (!res.access_token) {
-          Taro.showToast({
-            title: '登录失败，请稍后重试。',
-            icon: 'none',
-          });
-          return false;
-        }
-        userStore.loginAction(res);
+    userStore
+      .login({
+        code,
+        grant_type: 'wechat',
       })
-      .catch(() => {
+      .finally(() => {
         Taro.hideLoading();
       });
   }

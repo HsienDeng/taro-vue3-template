@@ -1,5 +1,6 @@
 import Taro from '@tarojs/taro';
 import apiConfig from '@/api.config';
+import { Router } from 'tarojs-router-next';
 
 /**
  * 处理错误
@@ -20,9 +21,7 @@ const handleResponseError = (code: number, msg: string) => {
         content: '登录已过期，请重新登录！',
       }).then(() => {
         Taro.removeStorageSync('token');
-        Taro.reLaunch({
-          url: '/pages/login/login',
-        });
+        Router.toLogin();
       });
       break;
     case 404:
@@ -45,6 +44,7 @@ const handleResponseError = (code: number, msg: string) => {
  */
 const handleResponse = (res) => {
   const code = res.data.code || res.statusCode;
+  console.log(code);
   if (code && code !== 200) {
     const errorMsg = res.data.msg || '网络错误，请稍候重试';
     handleResponseError(code, errorMsg);
@@ -71,7 +71,7 @@ const interceptor = (chain) => {
         if (nil) {
           return reject(data);
         }
-        resolve(res);
+        return resolve(data);
       })
       .catch((err) => reject(err));
   });

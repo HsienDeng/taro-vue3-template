@@ -22,7 +22,7 @@ export interface UserInfoVo {
   permissions?: string[];
   roles?: string[];
   professionList?: number[];
-  user?: User;
+  user?: UserVo;
   apps?: App[];
 }
 
@@ -67,7 +67,7 @@ export interface TagList {
   tagId: number;
 }
 
-export interface User {
+export interface UserVo {
   createBy: string;
   createTime: string;
   updateBy: any;

@@ -9,7 +9,7 @@ import '@nutui/nutui-taro/dist/style.css';
 import '@nutui/icons-vue/dist/style_iconfont.css';
 
 const App = createApp({
-  onLaunch() {},
+  onShow() {},
 });
 
 setupStore(App);

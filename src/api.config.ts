@@ -3,7 +3,7 @@ const envVersion = __wxConfig.envVersion;
 
 const apiConfig = {
   version: '1.0.0',
-  baseUrl: 'http://192.168.0.48:9191',
+  baseUrl: 'http://192.168.0.38:9191',
 };
 
 if (envVersion === 'trial') {
