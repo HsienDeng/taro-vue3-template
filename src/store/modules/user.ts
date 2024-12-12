@@ -4,15 +4,17 @@ import Taro from '@tarojs/taro';
 import { loginRequest } from '@/api/user';
 import { awaitWrap } from '@/utils/ghc';
 import { selectUserInfo } from '@/api/user';
-import { UserVo } from '@/api/user/types';
+import { LoginResult, RolesFull, UserVo } from '@/api/user/types';
 import { ref } from 'vue';
 
 export const useUserStore = defineStore(
   'userStore',
   () => {
     const token = ref('');
-    const userInfo = ref<UserVo>();
-    const roles = ref<string[]>();
+    const currentRole = ref<RolesFull>({ roleId: 0, roleKey: '', roleName: '' });
+    const userInfo = ref<UserVo>({ nickName: '', phonenumber: '', userId: 0, userName: '' });
+    const rolesFull = ref<RolesFull[]>([]);
+    const roles = ref<string[]>([]);
     const permissions = ref<string[]>();
 
     const pwdLoginAction = () => {
@@ -23,10 +25,29 @@ export const useUserStore = defineStore(
     function setUserInfo() {
       selectUserInfo().then((res) => {
         userInfo.value = res.user;
-        console.log(userInfo.value);
         permissions.value = res.permissions;
         roles.value = res.roles;
+        rolesFull.value = res.rolesFull;
+
+        if (!currentRole.value.roleId && res.rolesFull && res.rolesFull?.length > 0) {
+          setCurrentRole();
+        }
       });
+    }
+
+    /* 设置当前角色 */
+    function setCurrentRole(roleId = null) {
+      if (!roleId) {
+        currentRole.value = rolesFull.value[0];
+        return;
+      }
+      console.log(roleId);
+      const rule = rolesFull.value.find((item) => item.roleId === roleId);
+      console.log({ rule });
+      if (rule) {
+        currentRole.value = rule;
+        console.log(currentRole.value);
+      }
     }
 
     /* 通用登录 */
@@ -53,7 +74,7 @@ export const useUserStore = defineStore(
     /**
      * 登录成功后的操作
      */
-    async function loginAction(data) {
+    async function loginAction(data: LoginResult) {
       Taro.setStorageSync('token', data.access_token);
       Taro.reLaunch({
         url: '/pages/workbench/index',
@@ -64,10 +85,13 @@ export const useUserStore = defineStore(
       token,
       userInfo,
       roles,
+      currentRole,
+      rolesFull,
 
       login,
       pwdLoginAction,
       setUserInfo,
+      setCurrentRole,
     };
   },
   {
@@ -76,73 +100,6 @@ export const useUserStore = defineStore(
     },
   },
 );
-
-//
-//
-// export const useUserStore = defineStore(
-//   'userStore',
-//   {
-//     state: (): UserState => ({
-//       token: '',
-//       loginInfo: {},
-//       userInfo: {},
-//       rolesFull: [],
-//       roles: [],
-//       permissions: [],
-//     }),
-//     actions: {
-//       pwdLoginAction() {
-//         return;
-//       },
-//       setUserInfo() {
-//         selectUserInfo().then((res) => {
-//           const { user, rolesFull, permissions, roles } = res;
-//           this.userInfo = user;
-//           this.rolesFull = rolesFull;
-//           this.permissions = permissions;
-//           this.roles = roles;
-//         });
-//       },
-//       /* 通用登录 */
-//       async login(data: any) {
-//         Taro.showLoading({
-//           title: '正在登录中...',
-//           mask: true,
-//         });
-//         const [res, nil] = await awaitWrap(login(data));
-//         Taro.hideLoading();
-//         if (nil) {
-//           return Promise.reject(nil);
-//         }
-//         if (!res.access_token) {
-//           Taro.showToast({
-//             title: '登录失败，请稍后重试。',
-//             icon: 'none',
-//           });
-//           return false;
-//         }
-//         await this.loginAction(res);
-//         return Promise.resolve();
-//       },
-//       /**
-//        * 登录成功后的操作
-//        */
-//       async loginAction(data) {
-//         this.loginInfo = data;
-//         this.token = data.access_token;
-//         Taro.setStorageSync('token', data.access_token);
-//         Taro.reLaunch({
-//           url: '/pages/workbench/index',
-//         });
-//       },
-//     },
-//   },
-//   {
-//     persist: {
-//       key: 'userStore',
-//     },
-//   },
-// );
 
 // 外部使用
 export function useAsyncUserStoreWithOut() {

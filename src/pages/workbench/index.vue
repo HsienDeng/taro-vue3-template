@@ -3,23 +3,29 @@
     <view class="profile-card">
       <view class="wrapper">
         <view class="profile-info">
-          <nut-avatar size="large" src="/cat-avatar.png" />
+          <nut-avatar size="large">
+            <image src="@/assets/images/avatar-default.jpg" class="avatar" />
+          </nut-avatar>
           <view class="profile-text">
-            <text class="profile-name">邓贤</text>
-            <text class="profile-role">当前角色：执检秘书</text>
+            <text class="profile-name">{{ userInfo.nickName }}</text>
+            <text class="profile-role">当前角色：{{ currentRole.roleName }}</text>
           </view>
         </view>
-        <nut-button size="small" type="primary" class="role-switch-btn"> 切换角色 </nut-button>
+        <nut-button
+          v-if="roles && roles.length > 1"
+          size="small"
+          type="primary"
+          class="role-switch-btn"
+          @click="switchRoleClick"
+        >
+          切换角色
+        </nut-button>
       </view>
     </view>
 
     <view class="menu-list">
       <nut-cell-group>
-        <nut-cell
-          title="项目审查"
-          is-link
-          @click="handleNavigate('/pages/project-review/approval-project/index')"
-        />
+        <nut-cell title="项目审查" is-link @click="handleNavigate(ProjectReviewPath.approval)" />
         <nut-cell
           title="委员审查"
           is-link
@@ -32,20 +38,29 @@
         />
       </nut-cell-group>
     </view>
+
+    <SwitchRole ref="switchRoleRef" />
   </view>
 </template>
 
 <script setup lang="ts">
-  import { useUserStore } from '@/store/modules/user';
+  import SwitchRole from './components/SwitchRole.vue';
+
+  import { ref, toRefs } from 'vue';
   import { Router } from 'tarojs-router-next';
+  import { useUserStore } from '@/store/modules/user';
+  import { ProjectReviewPath } from '@/pages/project-review/const';
 
   const $store = useUserStore();
+  const { userInfo, currentRole, roles } = toRefs($store);
+  const switchRoleRef = ref();
 
-  console.log($store.userInfo);
-  // Navigation handler
   const handleNavigate = (url: string) => {
-    console.log(url);
     Router.navigate({ url });
+  };
+
+  const switchRoleClick = () => {
+    switchRoleRef.value?.show();
   };
 
   $store.setUserInfo();
@@ -56,6 +71,11 @@
     box-sizing: border-box;
     min-height: 100vh;
     background-color: #f5f5f5;
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   .profile-card {

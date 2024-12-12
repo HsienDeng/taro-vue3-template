@@ -39,6 +39,6 @@
   import { CellGroup } from '@nutui/nutui-taro';
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
   @import './index.scss';
 </style>

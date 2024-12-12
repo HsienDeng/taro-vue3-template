@@ -44,7 +44,6 @@ const handleResponseError = (code: number, msg: string) => {
  */
 const handleResponse = (res) => {
   const code = res.data.code || res.statusCode;
-  console.log(code);
   if (code && code !== 200) {
     const errorMsg = res.data.msg || '网络错误，请稍候重试';
     handleResponseError(code, errorMsg);
