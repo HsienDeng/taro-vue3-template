@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro';
-import apiConfig from '@/api.config';
+import apiConfig from '../../config/api';
 import { Router } from 'tarojs-router-next';
 
 /**

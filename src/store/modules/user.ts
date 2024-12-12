@@ -88,6 +88,7 @@ export const useUserStore = defineStore(
       currentRole,
       rolesFull,
 
+      getNickName: () => userInfo.value.nickName,
       login,
       pwdLoginAction,
       setUserInfo,

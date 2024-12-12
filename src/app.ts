@@ -8,12 +8,12 @@ import './assets/font/iconfont.css';
 import '@nutui/nutui-taro/dist/style.css';
 import '@nutui/icons-vue/dist/style_iconfont.css';
 
-const App = createApp({
+const app = createApp({
   onShow() {},
 });
 
-setupStore(App);
+setupStore(app);
 
-App.use(IconFont);
+app.use(IconFont);
 
-export default App;
+export default app;

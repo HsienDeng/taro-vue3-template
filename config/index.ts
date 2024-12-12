@@ -1,7 +1,9 @@
 import Components from 'unplugin-vue-components/webpack';
 import NutUIResolver from '@nutui/auto-import-resolver';
+import { UnifiedWebpackPluginV5 } from 'weapp-tailwindcss/webpack';
 
-const path = require('path');
+import path from 'path';
+
 const config = {
   projectName: 'xy3-ctri-review',
   alias: {
@@ -37,6 +39,21 @@ const config = {
   },
   mini: {
     webpackChain(chain) {
+      chain.merge({
+        plugin: {
+          install: {
+            plugin: UnifiedWebpackPluginV5,
+            args: [
+              {
+                injectAdditionalCssVarScope: true,
+                appType: 'taro',
+                rem2rpx: true,
+              },
+            ],
+          },
+        },
+      });
+
       chain.plugin('unplugin-vue-components').use(
         Components({
           resolvers: [
@@ -51,20 +68,18 @@ const config = {
     postcss: {
       pxtransform: {
         enable: true,
-        config: {
-          // selectorBlackList: ['nut-']
-        },
+        config: {},
       },
       url: {
         enable: true,
         config: {
-          limit: 1024, // 设定转换尺寸上限
+          limit: 1024,
         },
       },
       cssModules: {
-        enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
+        enable: false,
         config: {
-          namingPattern: 'module', // 转换模式，取值为 global/module
+          namingPattern: 'module',
           generateScopedName: '[name]__[local]___[hash:base64:5]',
         },
       },

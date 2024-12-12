@@ -4,7 +4,11 @@
       <view class="wrapper">
         <view class="profile-info">
           <nut-avatar size="large">
-            <image src="@/assets/images/avatar-default.jpg" class="avatar" />
+            <img
+              src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+              alt="头像"
+              class="avatar"
+            />
           </nut-avatar>
           <view class="profile-text">
             <text class="profile-name">{{ userInfo.nickName }}</text>
@@ -24,19 +28,14 @@
     </view>
 
     <view class="menu-list">
-      <nut-cell-group>
-        <nut-cell title="项目审查" is-link @click="handleNavigate(ProjectReviewPath.approval)" />
-        <nut-cell
-          title="委员审查"
-          is-link
-          @click="handleNavigate('/pages/committee-review/index')"
-        />
-        <nut-cell
-          title="电子签名签章"
-          is-link
-          @click="handleNavigate('/pages/electronic-signature/index')"
-        />
-      </nut-cell-group>
+      <div class="item bg-white p-2">
+        <div class="">项目审查</div>
+        <nut-grid :column-num="3">
+          <nut-grid-item text="text">1</nut-grid-item>
+          <nut-grid-item text="text">2</nut-grid-item>
+          <nut-grid-item text="text">3</nut-grid-item>
+        </nut-grid>
+      </div>
     </view>
 
     <SwitchRole ref="switchRoleRef" />
@@ -47,17 +46,11 @@
   import SwitchRole from './components/SwitchRole.vue';
 
   import { ref, toRefs } from 'vue';
-  import { Router } from 'tarojs-router-next';
   import { useUserStore } from '@/store/modules/user';
-  import { ProjectReviewPath } from '@/pages/project-review/const';
 
   const $store = useUserStore();
   const { userInfo, currentRole, roles } = toRefs($store);
   const switchRoleRef = ref();
-
-  const handleNavigate = (url: string) => {
-    Router.navigate({ url });
-  };
 
   const switchRoleClick = () => {
     switchRoleRef.value?.show();

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  // import ToorbarWork from '@/pages/ctri-yyd/component/toobar-work.vue';
+  import { IconFont } from '@nutui/icons-vue-taro';
+
   import { ref } from 'vue';
-  // import FloatingPermisBub from '@/pages/ctri-yyd/component/floating-permis-bubble.vue';
 
   const value = ref('');
   const root = ref();
@@ -25,7 +25,7 @@
             <div class="title-tip"></div>
             <div>注册类药物临床试验</div>
           </div>
-          <div><nut-icon name="arrow" /></div>
+          <div><IconFont name="arrow" /></div>
         </div>
         <div>LP-108在复发或难治B细胞淋巴瘤患者中的I期临床研究</div>
         <div class="card-flex">
@@ -58,7 +58,7 @@
             <div class="title-tip"></div>
             <div>注册类药物临床试验</div>
           </div>
-          <div><nut-icon name="arrow" /></div>
+          <div><IconFont name="arrow" /></div>
         </div>
         <div>LP-108在复发或难治B细胞淋巴瘤患者中的I期临床研究</div>
         <div class="card-flex">
@@ -89,7 +89,7 @@
             <div class="title-tip"></div>
             <div>注册类药物临床试验</div>
           </div>
-          <div><nut-icon name="arrow" /></div>
+          <div><IconFont name="arrow" /></div>
         </div>
         <div>LP-108在复发或难治B细胞淋巴瘤患者中的I期临床研究</div>
         <div class="card-flex">
@@ -118,11 +118,8 @@
       </div>
     </div>
     <!--    底部任务台-->
-    <nut-sticky position="bottom" class="footer-bg">
-      <ToorbarWork />
-    </nut-sticky>
+    <nut-sticky position="bottom" class="footer-bg" />
     <!--    切换角色-悬浮-->
-    <FloatingPermisBub />
   </div>
 </template>
 
