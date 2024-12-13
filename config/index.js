@@ -1,6 +1,5 @@
 import Components from 'unplugin-vue-components/webpack';
 import NutUIResolver from '@nutui/auto-import-resolver';
-import { UnifiedWebpackPluginV5 } from 'weapp-tailwindcss/webpack';
 
 import path from 'path';
 
@@ -42,12 +41,14 @@ const config = {
       chain.merge({
         plugin: {
           install: {
-            plugin: UnifiedWebpackPluginV5,
+            plugin: require('terser-webpack-plugin'),
             args: [
               {
-                injectAdditionalCssVarScope: true,
-                appType: 'taro',
-                rem2rpx: true,
+                terserOptions: {
+                  compress: true,
+                  keep_classnames: true,
+                  keep_fnames: true,
+                },
               },
             ],
           },

@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
   import { WeChatLogin, PhoneLogin, PassWordLogin } from './component';
 </script>
 

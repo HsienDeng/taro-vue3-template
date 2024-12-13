@@ -2,8 +2,8 @@
   <div :class="rootClass"> 123 </div>
 </template>
 
-<script setup lang="ts">
-  import { computed, PropType } from 'vue';
+<script setup>
+  import { computed } from 'vue';
   import { createComponent } from '@/utils/create/component';
 
   const props = defineProps({
@@ -20,7 +20,7 @@
       required: true,
     },
     descTextAlign: {
-      type: String as PropType<'left' | 'center' | 'right'>,
+      type: String,
       default: 'right',
     },
     isLink: {

@@ -56,7 +56,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
   import { computed, reactive, ref, onMounted } from 'vue';
   import { LoginAction, useLoginAction } from '@/pages/login/hooks/useLogin';
   import Taro from '@tarojs/taro';

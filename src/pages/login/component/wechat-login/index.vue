@@ -20,11 +20,10 @@
   </NutSpace>
 </template>
 
-<script setup lang="ts">
+<script setup>
   import { computed, onMounted } from 'vue';
-  import { LoginAction, useLoginAction } from '@/pages/login/hooks/useLogin';
   import Taro from '@tarojs/taro';
-  import { login } from '@/api/user';
+  import { LoginAction, useLoginAction } from '@/pages/login/hooks/useLogin';
   import { useUserStore } from '@/store/modules/user';
 
   const userStore = useUserStore();

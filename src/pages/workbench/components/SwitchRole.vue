@@ -1,14 +1,14 @@
-<script setup lang="ts">
+<script setup>
   import { ref, toRefs } from 'vue';
   import { useUserStore } from '@/store/modules/user';
 
   const isVisible = ref(false);
   const $userStore = useUserStore();
   const { currentRole, rolesFull } = toRefs($userStore);
-  const menuItems = ref<any[]>([]);
+  const menuItems = ref([]);
 
   // 选择事件
-  const chooseItem = (itemParams: any) => {
+  const chooseItem = (itemParams) => {
     console.log(itemParams);
 
     $userStore.setCurrentRole(itemParams.roleId);

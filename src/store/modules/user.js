@@ -4,18 +4,22 @@ import Taro from '@tarojs/taro';
 import { loginRequest } from '@/api/user';
 import { awaitWrap } from '@/utils/ghc';
 import { selectUserInfo } from '@/api/user';
-import { LoginResult, RolesFull, UserVo } from '@/api/user/types';
 import { ref } from 'vue';
 
 export const useUserStore = defineStore(
   'userStore',
   () => {
     const token = ref('');
-    const currentRole = ref<RolesFull>({ roleId: 0, roleKey: '', roleName: '' });
-    const userInfo = ref<UserVo>({ nickName: '', phonenumber: '', userId: 0, userName: '' });
-    const rolesFull = ref<RolesFull[]>([]);
-    const roles = ref<string[]>([]);
-    const permissions = ref<string[]>();
+    const currentRole = ref({ roleId: 0, roleKey: '', roleName: '' });
+    const userInfo = ref({
+      nickName: '',
+      phonenumber: '',
+      userId: 0,
+      userName: '',
+    });
+    const rolesFull = ref([]);
+    const roles = ref([]);
+    const permissions = ref();
 
     const pwdLoginAction = () => {
       return;
@@ -51,7 +55,7 @@ export const useUserStore = defineStore(
     }
 
     /* 通用登录 */
-    async function login(data: any) {
+    async function login(data) {
       Taro.showLoading({
         title: '正在登录中...',
         mask: true,
@@ -74,7 +78,7 @@ export const useUserStore = defineStore(
     /**
      * 登录成功后的操作
      */
-    async function loginAction(data: LoginResult) {
+    async function loginAction(data) {
       Taro.setStorageSync('token', data.access_token);
       Taro.reLaunch({
         url: '/pages/workbench/index',

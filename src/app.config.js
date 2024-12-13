@@ -2,7 +2,6 @@ export default defineAppConfig({
   pages: [
     'pages/workbench/index',
     'pages/login/index',
-    'pages/index/index',
     'pages/profile/index',
     'pages/project-review/approval-project/index',
   ],

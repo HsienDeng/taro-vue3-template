@@ -60,16 +60,15 @@
   </NutSpace>
 </template>
 
-<script setup lang="ts">
+<script setup>
   import Taro from '@tarojs/taro';
   import { ref, computed, reactive } from 'vue';
-  import { FormInstance } from '@nutui/nutui-taro';
 
   import { LoginAction, useLoginAction } from '../../hooks/useLogin';
   import { getImageCode, sendSmsCode } from '@/api/user';
   import { useUserStore } from '@/store/modules/user';
 
-  const formRef = ref<FormInstance>();
+  const formRef = ref();
   const userStore = useUserStore();
   /**
    * 表单数据

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
   import { IconFont } from '@nutui/icons-vue-taro';
 
   import { ref } from 'vue';

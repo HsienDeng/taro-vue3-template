@@ -7,7 +7,7 @@ import { Router } from 'tarojs-router-next';
  * @param code
  * @param msg
  */
-const handleResponseError = (code: number, msg: string) => {
+const handleResponseError = (code, msg) => {
   switch (code) {
     case 400:
       Taro.showToast({
@@ -65,7 +65,7 @@ const interceptor = (chain) => {
     }
     return chain
       .proceed(requestParams)
-      .then((res: Promise<any>) => {
+      .then((res) => {
         const [data, nil] = handleResponse(res);
         if (nil) {
           return reject(data);
@@ -84,7 +84,7 @@ Taro.addInterceptor(interceptor);
  * @param url
  * @param config
  */
-const request = (method, url, config): Promise<any> => {
+const request = (method, url, config) => {
   let contentType = config?.data ? 'application/json' : 'application/x-www-form-urlencoded';
   if (config) contentType = config?.headers?.contentType || contentType;
   const option = {
@@ -100,10 +100,10 @@ const request = (method, url, config): Promise<any> => {
 };
 
 export default {
-  get: (url: string, config?: any) => {
+  get: (url, config) => {
     return request('GET', url, config);
   },
-  post: (url: string, config?: any) => {
+  post: (url, config) => {
     return request('POST', url, config);
   },
 };

@@ -1,5 +1,4 @@
 import http from '@/utils/http';
-import { LoginResult, UserInfoVo } from '@/api/user/types';
 
 /** 登录固定传参 */
 const client_id = 'ctms';
@@ -11,7 +10,7 @@ const app_id = '2';
 /**
  * 登录
  */
-export function loginRequest(params: any): Promise<LoginResult> {
+export function loginRequest(params) {
   params = {
     client_id,
     client_secret,
@@ -43,6 +42,6 @@ export function sendSmsCode(data) {
 /**
  * 获取当前登录用户信息
  */
-export function selectUserInfo(): Promise<UserInfoVo> {
+export function selectUserInfo() {
   return http.get('/system/user/getInfo');
 }
